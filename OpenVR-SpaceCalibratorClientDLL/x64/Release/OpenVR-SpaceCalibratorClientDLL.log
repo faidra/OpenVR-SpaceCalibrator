@@ -1,5 +1,10 @@
 ﻿  dllmain.cpp
   IPCClient.cpp
-D:\user\Desktop\WorkSpace\OpenVR-SpaceCalibrator\OpenVR-SpaceCalibratorClientDLL\IPCClient.cpp(27,58): error C2440: '初期化中': 'const wchar_t [37]' から 'LPTSTR' に変換できません。
-D:\user\Desktop\WorkSpace\OpenVR-SpaceCalibrator\OpenVR-SpaceCalibratorClientDLL\IPCClient.cpp(27,18): message : 文字列リテラルからの変換では const 修飾子が失われます (/Zc:strictStrings を参照)
   stdafx.cpp
+LINK : warning C4727: 同じタイムスタンプを伴う、d:\user\desktop\workspace\openvr-spacecalibrator\openvr-spacecalibratorclientdll\x64\release\openvr-spacecalibratorclientdll.pch と名前指定された PCH が d:\user\desktop\workspace\openvr-spacecalibrator\openvr-spacecalibratorclientdll\x64\release\ipcclient.obj および d:\user\desktop\workspace\openvr-spacecalibrator\openvr-spacecalibratorclientdll\x64\release\dllmain.obj で見つかりました。最初の PCH を使用します。
+LINK : warning C4727: 同じタイムスタンプを伴う、d:\user\desktop\workspace\openvr-spacecalibrator\openvr-spacecalibratorclientdll\x64\release\openvr-spacecalibratorclientdll.pch と名前指定された PCH が d:\user\desktop\workspace\openvr-spacecalibrator\openvr-spacecalibratorclientdll\x64\release\stdafx.obj および d:\user\desktop\workspace\openvr-spacecalibrator\openvr-spacecalibratorclientdll\x64\release\dllmain.obj で見つかりました。最初の PCH を使用します。
+  コード生成しています。
+  All 8 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  コード生成が終了しました。
+  OpenVR-SpaceCalibratorClientDLL.vcxproj -> D:\user\Desktop\WorkSpace\OpenVR-SpaceCalibrator\x64\Release\OpenVR-SpaceCalibratorClientDLL.dll
+  OpenVR-SpaceCalibratorClientDLL.vcxproj -> D:\user\Desktop\WorkSpace\OpenVR-SpaceCalibrator\x64\Release\OpenVR-SpaceCalibratorClientDLL.pdb (Full PDB)
