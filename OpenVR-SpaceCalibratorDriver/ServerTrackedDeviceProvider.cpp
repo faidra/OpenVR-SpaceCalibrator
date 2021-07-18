@@ -2,6 +2,9 @@
 #include "Logging.h"
 #include "InterfaceHookInjector.h"
 
+#include <string>
+#include <sstream>
+
 vr::EVRInitError ServerTrackedDeviceProvider::Init(vr::IVRDriverContext *pDriverContext)
 {
 	TRACE("ServerTrackedDeviceProvider::Init()");
@@ -11,6 +14,7 @@ vr::EVRInitError ServerTrackedDeviceProvider::Init(vr::IVRDriverContext *pDriver
 
 	InjectHooks(this, pDriverContext);
 	server.Run();
+	client.Connect();
 
 	return vr::VRInitError_None;
 }
@@ -66,3 +70,16 @@ bool ServerTrackedDeviceProvider::HandleDevicePoseUpdated(uint32_t openVRID, vr:
 	return true;
 }
 
+void ServerTrackedDeviceProvider::SendPose(uint32_t openVRID, vr::DriverPose_t& pose)
+{
+	std::stringstream str;
+	str << openVRID << ',';
+	str << pose.vecWorldFromDriverTranslation[0] << ',';
+	str << pose.vecWorldFromDriverTranslation[1] << ',';
+	str << pose.vecWorldFromDriverTranslation[2] << ',';
+	str << pose.qWorldFromDriverRotation.x << ',';
+	str << pose.qWorldFromDriverRotation.y << ',';
+	str << pose.qWorldFromDriverRotation.z << ',';
+	str << pose.qWorldFromDriverRotation.w << ',';
+	client.Send(str.str());
+}

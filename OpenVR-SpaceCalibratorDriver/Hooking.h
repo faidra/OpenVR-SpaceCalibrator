@@ -1,5 +1,7 @@
 #pragma once
 
+#define _WINSOCKAPI_
+
 #include "Logging.h"
 #include <MinHook.h>
 #include <map>

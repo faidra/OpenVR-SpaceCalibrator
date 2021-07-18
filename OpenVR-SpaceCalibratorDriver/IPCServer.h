@@ -1,12 +1,16 @@
 #pragma once
 
+#define _WINSOCKAPI_
+
 #include "../Protocol.h"
 
 #include <thread>
 #include <set>
 #include <mutex>
 
+#ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
+#endif
 #include <windows.h>
 
 class ServerTrackedDeviceProvider;

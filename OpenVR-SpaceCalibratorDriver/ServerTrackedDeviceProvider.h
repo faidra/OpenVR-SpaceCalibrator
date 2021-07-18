@@ -1,6 +1,9 @@
 #pragma once
 
+#define _WINSOCKAPI_
+
 #include "IPCServer.h"
+#include "UdpClient.h"
 
 #include <openvr_driver.h>
 
@@ -37,9 +40,11 @@ public:
 	ServerTrackedDeviceProvider() : server(this) { }
 	void SetDeviceTransform(const protocol::SetDeviceTransform &newTransform);
 	bool HandleDevicePoseUpdated(uint32_t openVRID, vr::DriverPose_t &pose);
+	void SendPose(uint32_t openVRID, vr::DriverPose_t& pose);
 
 private:
 	IPCServer server;
+	UdpClient client;
 
 	struct DeviceTransform
 	{

@@ -1,5 +1,7 @@
 #pragma once
 
+#define _WINSOCKAPI_
+
 #include <openvr_driver.h>
 
 class VRWatchdogProvider : public vr::IVRWatchdogProvider
