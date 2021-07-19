@@ -81,5 +81,20 @@ void ServerTrackedDeviceProvider::SendPose(uint32_t openVRID, vr::DriverPose_t& 
 	str << pose.qRotation.y << ',';
 	str << pose.qRotation.z << ',';
 	str << pose.qRotation.w << ',';
+	str << pose.vecWorldFromDriverTranslation[0] << ',';
+	str << pose.vecWorldFromDriverTranslation[1] << ',';
+	str << pose.vecWorldFromDriverTranslation[2] << ',';
+	str << pose.qWorldFromDriverRotation.x << ',';
+	str << pose.qWorldFromDriverRotation.y << ',';
+	str << pose.qWorldFromDriverRotation.z << ',';
+	str << pose.qWorldFromDriverRotation.w << ',';
+	str << pose.vecDriverFromHeadTranslation[0] << ',';
+	str << pose.vecDriverFromHeadTranslation[1] << ',';
+	str << pose.vecDriverFromHeadTranslation[2] << ',';
+	str << pose.qDriverFromHeadRotation.x << ',';
+	str << pose.qDriverFromHeadRotation.y << ',';
+	str << pose.qDriverFromHeadRotation.z << ',';
+	str << pose.qDriverFromHeadRotation.w << ',';
+
 	client.Send(str.str());
 }
