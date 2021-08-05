@@ -74,6 +74,15 @@ namespace protocol
 		struct DevicePose
 		{
 			uint32_t openVRID;
+
+			vr::HmdQuaternion_t qWorldFromDriverRotation;
+			double vecWorldFromDriverTranslation[3];
+
+			vr::HmdQuaternion_t qDriverFromHeadRotation;
+			double vecDriverFromHeadTranslation[3];
+
+			double vecPosition[3];
+			vr::HmdQuaternion_t qRotation;
 		};
 
 		uint32_t length;

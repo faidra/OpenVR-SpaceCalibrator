@@ -7,6 +7,7 @@
 #include "../Protocol.h"
 
 #include <openvr_driver.h>
+#include <map>
 
 class ServerTrackedDeviceProvider : public vr::IServerTrackedDeviceProvider
 {
@@ -41,7 +42,7 @@ public:
 	ServerTrackedDeviceProvider() : server(this) { }
 	void SetDeviceTransform(const protocol::SetDeviceTransform &newTransform);
 	bool HandleDevicePoseUpdated(uint32_t openVRID, vr::DriverPose_t &pose);
-	void SendPose(uint32_t openVRID, vr::DriverPose_t& pose);
+	void SetPose(uint32_t openVRID, vr::DriverPose_t& pose);
 	protocol::DevicePoses GetDevicePoses();
 
 private:
@@ -56,4 +57,5 @@ private:
 	};
 
 	DeviceTransform transforms[vr::k_unMaxTrackedDeviceCount];
+	std::map<uint32_t, vr::DriverPose_t> devicePoses;
 };
