@@ -4,6 +4,7 @@
 
 #include "IPCServer.h"
 #include "UdpClient.h"
+#include "../Protocol.h"
 
 #include <openvr_driver.h>
 
@@ -41,6 +42,7 @@ public:
 	void SetDeviceTransform(const protocol::SetDeviceTransform &newTransform);
 	bool HandleDevicePoseUpdated(uint32_t openVRID, vr::DriverPose_t &pose);
 	void SendPose(uint32_t openVRID, vr::DriverPose_t& pose);
+	protocol::DevicePoses GetDevicePoses();
 
 private:
 	IPCServer server;

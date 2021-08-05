@@ -98,3 +98,9 @@ void ServerTrackedDeviceProvider::SendPose(uint32_t openVRID, vr::DriverPose_t& 
 
 	client.Send(str.str());
 }
+
+protocol::DevicePoses ServerTrackedDeviceProvider::GetDevicePoses()
+{
+	protocol::DevicePoses p;
+	return p;
+}
