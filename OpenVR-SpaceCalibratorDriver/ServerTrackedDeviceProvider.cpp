@@ -72,7 +72,7 @@ bool ServerTrackedDeviceProvider::HandleDevicePoseUpdated(uint32_t openVRID, vr:
 
 void ServerTrackedDeviceProvider::SetPose(uint32_t openVRID, vr::DriverPose_t& pose)
 {
-	devicePoses[openVRID] = pose;
+	if (pose.poseIsValid) devicePoses[openVRID] = pose;
 }
 
 protocol::DevicePoses ServerTrackedDeviceProvider::GetDevicePoses()
