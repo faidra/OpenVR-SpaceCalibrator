@@ -3,7 +3,6 @@
 #define _WINSOCKAPI_
 
 #include "IPCServer.h"
-#include "UdpClient.h"
 #include "../Protocol.h"
 
 #include <openvr_driver.h>
@@ -47,7 +46,6 @@ public:
 
 private:
 	IPCServer server;
-	UdpClient client;
 
 	struct DeviceTransform
 	{

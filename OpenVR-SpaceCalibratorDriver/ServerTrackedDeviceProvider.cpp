@@ -14,7 +14,6 @@ vr::EVRInitError ServerTrackedDeviceProvider::Init(vr::IVRDriverContext *pDriver
 
 	InjectHooks(this, pDriverContext);
 	server.Run();
-	client.Connect();
 
 	return vr::VRInitError_None;
 }
