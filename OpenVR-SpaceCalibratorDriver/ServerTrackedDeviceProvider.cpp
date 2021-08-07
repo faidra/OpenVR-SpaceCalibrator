@@ -78,23 +78,24 @@ void ServerTrackedDeviceProvider::SetPose(uint32_t openVRID, vr::DriverPose_t& p
 protocol::DevicePoses ServerTrackedDeviceProvider::GetDevicePoses()
 {
 	protocol::DevicePoses poses;
-	int i = 0;
+	uint32_t i = 0;
 	for (std::pair<uint32_t, vr::DriverPose_t> p : devicePoses)
 	{
 		protocol::DevicePoses::DevicePose pose;
 		pose.openVRID = p.first;
-		pose.qWorldFromDriverRotation = p.second.qWorldFromDriverRotation;
-		pose.vecWorldFromDriverTranslation[0] = p.second.vecWorldFromDriverTranslation[0];
-		pose.vecWorldFromDriverTranslation[1] = p.second.vecWorldFromDriverTranslation[1];
-		pose.vecWorldFromDriverTranslation[2] = p.second.vecWorldFromDriverTranslation[2];
-		pose.qDriverFromHeadRotation = p.second.qDriverFromHeadRotation;
-		pose.vecDriverFromHeadTranslation[0] = p.second.vecDriverFromHeadTranslation[0];
-		pose.vecDriverFromHeadTranslation[1] = p.second.vecDriverFromHeadTranslation[1];
-		pose.vecDriverFromHeadTranslation[2] = p.second.vecDriverFromHeadTranslation[2];
-		pose.qRotation = p.second.qRotation;
-		pose.vecPosition[0] = p.second.vecPosition[0];
-		pose.vecPosition[1] = p.second.vecPosition[1];
-		pose.vecPosition[2] = p.second.vecPosition[2];
+		vr::DriverPose_t devicePose = p.second;
+		pose.qWorldFromDriverRotation = devicePose.qWorldFromDriverRotation;
+		pose.vecWorldFromDriverTranslation[0] = devicePose.vecWorldFromDriverTranslation[0];
+		pose.vecWorldFromDriverTranslation[1] = devicePose.vecWorldFromDriverTranslation[1];
+		pose.vecWorldFromDriverTranslation[2] = devicePose.vecWorldFromDriverTranslation[2];
+		pose.qDriverFromHeadRotation = devicePose.qDriverFromHeadRotation;
+		pose.vecDriverFromHeadTranslation[0] = devicePose.vecDriverFromHeadTranslation[0];
+		pose.vecDriverFromHeadTranslation[1] = devicePose.vecDriverFromHeadTranslation[1];
+		pose.vecDriverFromHeadTranslation[2] = devicePose.vecDriverFromHeadTranslation[2];
+		pose.qRotation = devicePose.qRotation;
+		pose.vecPosition[0] = devicePose.vecPosition[0];
+		pose.vecPosition[1] = devicePose.vecPosition[1];
+		pose.vecPosition[2] = devicePose.vecPosition[2];
 		poses.devicePoses[i] = pose;
 		if (++i >= 8) break;
 	}
