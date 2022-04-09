@@ -14,7 +14,6 @@
     <ProjectGuid>{63BAE169-D595-4464-8E7E-50D6FD379348}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>OpenVRSpaceCalibrator</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
