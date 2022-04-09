@@ -269,7 +269,7 @@ void ResetAndDisableOffsets(uint32_t id)
 	zeroQ.x = 0; zeroQ.y = 0; zeroQ.z = 0; zeroQ.w = 1;
 
 	protocol::Request req(protocol::RequestSetDeviceTransform);
-	req.setDeviceTransform = { id, false, zeroV, zeroQ };
+	req.setDeviceTransform = { id, false, zeroV, zeroQ, 1.0 };
 	Driver.SendBlocking(req);
 }
 
@@ -338,7 +338,8 @@ void ScanAndApplyProfile(CalibrationContext &ctx)
 			id,
 			true,
 			VRTranslationVec(ctx.calibratedTranslation),
-			VRRotationQuat(ctx.calibratedRotation)
+			VRRotationQuat(ctx.calibratedRotation),
+			ctx.calibratedScale
 		};
 		Driver.SendBlocking(req);
 	}
@@ -404,6 +405,16 @@ void CalibrationTick(double time)
 	{
 		bool ok = true;
 
+		char referenceSerial[256], targetSerial[256];
+		vr::VRSystem()->GetStringTrackedDeviceProperty(ctx.referenceID, vr::Prop_SerialNumber_String, referenceSerial, 256);
+		vr::VRSystem()->GetStringTrackedDeviceProperty(ctx.targetID, vr::Prop_SerialNumber_String, targetSerial, 256);
+
+		char buf[256];
+		snprintf(buf, sizeof buf, "Reference device ID: %d, serial: %s\n", ctx.referenceID, referenceSerial);
+		CalCtx.Log(buf);
+		snprintf(buf, sizeof buf, "Target device ID: %d, serial %s\n", ctx.targetID, targetSerial);
+		CalCtx.Log(buf);
+
 		if (ctx.referenceID == -1)
 		{
 			CalCtx.Log("Missing reference device\n"); ok = false;
@@ -433,9 +444,7 @@ void CalibrationTick(double time)
 		ctx.state = CalibrationState::Rotation;
 		ctx.wantedUpdateInterval = 0.0;
 
-		char buf[256];
-		snprintf(buf, sizeof buf, "Starting calibration, referenceID=%d targetID=%d\n", ctx.referenceID, ctx.targetID);
-		CalCtx.Log(buf);
+		CalCtx.Log("Starting calibration...\n");
 		return;
 	}
 
