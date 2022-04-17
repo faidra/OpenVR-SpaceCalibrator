@@ -22,12 +22,16 @@ void Connect(char* error)
 	strcpy_s(error, 256, "ok");
 }
 
-void SetDeviceTransform(uint32_t id, double x, double y, double z, double qx, double qy, double qz, double qw)
+void SetDeviceTransform(
+	uint32_t id,
+	double px, double py, double pz,
+	double qx, double qy, double qz, double qw,
+	double scale)
 {
 	vr::HmdVector3d_t pos;
-	pos.v[0] = x;
-	pos.v[1] = y;
-	pos.v[2] = z;
+	pos.v[0] = px;
+	pos.v[1] = py;
+	pos.v[2] = pz;
 
 	vr::HmdQuaternion_t rot;
 	rot.x = qx;
@@ -36,7 +40,7 @@ void SetDeviceTransform(uint32_t id, double x, double y, double z, double qx, do
 	rot.w = qw;
 
 	protocol::Request req(protocol::RequestSetDeviceTransform);
-	req.setDeviceTransform = { id, true, pos, rot };
+	req.setDeviceTransform = { id, true, pos, rot, scale };
 	Driver.SendBlocking(req);
 }
 
