@@ -3,9 +3,23 @@
 
 static IPCClient Driver;
 
-void Connect()
+void Connect(char* error)
 {
-	Driver.Connect();
+	try
+	{
+		Driver.Connect();
+	}
+	catch (std::runtime_error e)
+	{
+		strcpy_s(error, 256, e.what());
+		return;
+	}
+	catch (...)
+	{
+		strcpy_s(error, 256, "unknown error");
+		return;
+	}
+	strcpy_s(error, 256, "ok");
 }
 
 void SetDeviceTransform(uint32_t id, double x, double y, double z, double qx, double qy, double qz, double qw)
